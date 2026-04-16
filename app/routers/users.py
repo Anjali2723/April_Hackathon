@@ -16,7 +16,6 @@ def read_users(db: Session = Depends(get_db)):
     return crud.get_users(db)
 
 
-# ✅ REQUIRED for tests
 @router.get("/{user_id}", response_model=schemas.UserOut)
 def read_user(user_id: int, db: Session = Depends(get_db)):
     user = crud.get_user(db, user_id)
@@ -25,7 +24,6 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
     return user
 
 
-# ✅ JSON body, not query params
 @router.put("/{user_id}", response_model=schemas.UserOut)
 def update_user(
     user_id: int,
