@@ -1,9 +1,10 @@
 from sqlalchemy.orm import Session
 from . import models, schemas
+from app.core.security import hash_password
 
 # ---------- USERS ----------
 def create_user(db: Session, user: schemas.UserCreate):
-    db_user = models.User(name=user.name, email=user.email, role=user.role)
+    db_user = models.User(name=user.name, email=user.email, role=user.role,hashed_password=hash_password(user.password))
     db.add(db_user)
     db.commit()
     db.refresh(db_user)

@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel,Field
 from typing import Optional
 
 # ---------- USERS ----------
@@ -7,7 +7,8 @@ class UserBase(BaseModel):
     email: str
 
 class UserCreate(UserBase):
-    role: str = "user"   # allow creating admin for demo
+    password: str = Field(min_length=1, max_length=72)  
+    role: str = "user"  
 
 class UserUpdate(BaseModel):
     name: Optional[str] = None

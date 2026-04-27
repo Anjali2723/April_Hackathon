@@ -5,6 +5,7 @@ from app.routers.orders import router as orders_router
 
 app = FastAPI()
 
+
 Base.metadata.create_all(bind=engine)
 
 app.include_router(users_router)

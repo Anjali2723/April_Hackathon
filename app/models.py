@@ -10,6 +10,7 @@ class User(Base):
     name = Column(String, index=True, unique=True)
     email = Column(String, unique=True, index=True)
     role = Column(String, default="user")  # "admin" or "user"
+    hashed_password = Column(String)
 
     orders = relationship("Order", back_populates="user", cascade="all, delete-orphan")
 
